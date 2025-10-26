@@ -8,21 +8,13 @@
   body { font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 0; background: #111; color: #fff; }
   h1 { margin-top: 20px; }
   canvas { border: 1px solid #555; display: block; margin: 20px auto; cursor: pointer; }
-  .button {
-    display:inline-block; padding:10px 20px; background:#28a745; color:#fff;
-    text-decoration:none; border-radius:5px; margin-top:10px; font-weight:bold;
-  }
 </style>
 </head>
 <body>
 <h1>CryptoCanvas</h1>
-<p>Click on the canvas to reserve your pixel!</p>
+<p>Click on any pixel to reserve it! Every click opens an email to reserve.</p>
 
-<a href="mailto:rradostinov1@gmail.com?subject=CryptoCanvas%20Pixel%20Reservation&body=Hi,%20I%20want%20to%20reserve%20a%20pixel." class="button">
-Reserve Pixel
-</a>
-
-<canvas id="cryptoCanvas" width="500" height="500"></canvas>
+<canvas id="cryptoCanvas" width="1000" height="1000"></canvas>
 
 <script>
 const canvas = document.getElementById('cryptoCanvas');
@@ -32,32 +24,18 @@ const ctx = canvas.getContext('2d');
 ctx.fillStyle = "#333";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-// Списък на „купените“ пиксели
-const purchasedPixels = {};
-
-// Клик върху пиксел
 canvas.addEventListener('click', (e) => {
+  // Отваря имейл към теб
+  window.location.href = "mailto:rradostinov1@gmail.com?subject=CryptoCanvas%20Pixel%20Reservation&body=Hi,%20I%20want%20to%20reserve%20a%20pixel.";
+
+  // Опционално оцветяване на пиксел
   const rect = canvas.getBoundingClientRect();
   const x = Math.floor(e.clientX - rect.left);
   const y = Math.floor(e.clientY - rect.top);
-  const key = x + ',' + y;
+  ctx.fillStyle = "#28a745"; // зелен = резервиран
+  ctx.fillRect(x
 
-  if(purchasedPixels[key]){
-    alert('This pixel is already reserved!');
-    return;
-  }
 
-  const name = prompt('Enter your name or brand for this pixel:');
-  if(name){
-    purchasedPixels[key] = true;
-    ctx.fillStyle = '#' + Math.floor(Math.random()*16777215).toString(16);
-    ctx.fillRect(x, y, 1, 1); // оцветяване на пиксел
-    alert('Pixel reserved for ' + name + ' at (' + x + ',' + y + ')');
-  }
-});
-</script>
-</body>
-</html>
 
 
 

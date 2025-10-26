@@ -18,13 +18,11 @@
 <h1>CryptoCanvas</h1>
 <p>Click on the canvas to reserve your pixel!</p>
 
-<!-- Бутон за резервиране -->
 <a href="mailto:rradostinov1@gmail.com?subject=CryptoCanvas%20Pixel%20Reservation&body=Hi,%20I%20want%20to%20reserve%20a%20pixel." class="button">
 Reserve Pixel
 </a>
 
-<!-- Canvas за пикселите -->
-<canvas id="cryptoCanvas" width="1000" height="1000"></canvas>
+<canvas id="cryptoCanvas" width="500" height="500"></canvas>
 
 <script>
 const canvas = document.getElementById('cryptoCanvas');
@@ -34,22 +32,34 @@ const ctx = canvas.getContext('2d');
 ctx.fillStyle = "#333";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+// Списък на „купените“ пиксели
+const purchasedPixels = {};
+
 // Клик върху пиксел
 canvas.addEventListener('click', (e) => {
   const rect = canvas.getBoundingClientRect();
   const x = Math.floor(e.clientX - rect.left);
   const y = Math.floor(e.clientY - rect.top);
+  const key = x + ',' + y;
+
+  if(purchasedPixels[key]){
+    alert('This pixel is already reserved!');
+    return;
+  }
+
   const name = prompt('Enter your name or brand for this pixel:');
   if(name){
-    // Произволен цвят за пиксела
+    purchasedPixels[key] = true;
     ctx.fillStyle = '#' + Math.floor(Math.random()*16777215).toString(16);
-    ctx.fillRect(x, y, 1, 1); // чертаем 1x1 пиксел
+    ctx.fillRect(x, y, 1, 1); // оцветяване на пиксел
     alert('Pixel reserved for ' + name + ' at (' + x + ',' + y + ')');
   }
 });
 </script>
 </body>
 </html>
+
+
 
 
 

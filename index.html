@@ -7,11 +7,15 @@
 <style>
   body { font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 0; background: #111; color: #fff; }
   h1 { margin-top: 20px; }
+  p { font-size: 18px; }
   canvas { border: 1px solid #555; display: block; margin: 20px auto; cursor: pointer; }
 </style>
 </head>
 <body>
 <h1>CryptoCanvas</h1>
+<p style="color: #ffcc00; font-weight: bold;">
+To buy a pixel, please contact me at: <a href="mailto:rradostinov1@gmail.com" style="color:#0f0;">rradostinov1@gmail.com</a>
+</p>
 <p>Click on any pixel to contact me!</p>
 
 <canvas id="cryptoCanvas" width="500" height="500"></canvas>
@@ -32,12 +36,8 @@ canvas.addEventListener('click', (e) => {
   const rect = canvas.getBoundingClientRect();
   const x = Math.floor(e.clientX - rect.left);
   const y = Math.floor(e.clientY - rect.top);
-  ctx.fillStyle = "#28a745"; // green = clicked
-  ctx.fillRect(x, y, 1, 1);
-});
-</script>
-</body>
-</html>
+
+
 
 
 

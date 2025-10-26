@@ -12,28 +12,35 @@
 </head>
 <body>
 <h1>CryptoCanvas</h1>
-<p>Click on any pixel to reserve it! Every click opens an email to reserve.</p>
+<p>Click on any pixel to contact me!</p>
 
-<canvas id="cryptoCanvas" width="1000" height="1000"></canvas>
+<canvas id="cryptoCanvas" width="500" height="500"></canvas>
 
 <script>
 const canvas = document.getElementById('cryptoCanvas');
 const ctx = canvas.getContext('2d');
 
-// Начален фон
+// Initial background
 ctx.fillStyle = "#333";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 canvas.addEventListener('click', (e) => {
-  // Отваря имейл към теб
-  window.location.href = "mailto:rradostinov1@gmail.com?subject=CryptoCanvas%20Pixel%20Reservation&body=Hi,%20I%20want%20to%20reserve%20a%20pixel.";
+  // Open email client
+  window.location.href = "mailto:rradostinov1@gmail.com?subject=CryptoCanvas%20Pixel%20Request&body=Hello,%20I%20would%20like%20to%20reserve%20a%20pixel.%20Please%20contact%20me.";
 
-  // Опционално оцветяване на пиксел
+  // Optional: mark the pixel visually
   const rect = canvas.getBoundingClientRect();
   const x = Math.floor(e.clientX - rect.left);
   const y = Math.floor(e.clientY - rect.top);
-  ctx.fillStyle = "#28a745"; // зелен = резервиран
-  ctx.fillRect(x
+  ctx.fillStyle = "#28a745"; // green = clicked
+  ctx.fillRect(x, y, 1, 1);
+});
+</script>
+</body>
+</html>
+
+
+
 
 
 
